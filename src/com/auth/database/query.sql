@@ -28,4 +28,17 @@ CREATE TABLE `patient` (
   `lastName` varchar(255) DEFAULT NULL,
   `sex` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ;
+
+
+CREATE TABLE `hospital` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `contactNo` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) 
+
