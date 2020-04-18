@@ -1,5 +1,6 @@
 package com.auth.service;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -8,9 +9,11 @@ import java.util.List;
 
 import com.auth.database.DBConnection;
 import com.auth.model.Doctor;
+import com.auth.model.User;
 
 
-public class UserService {
+
+public class DoctorService {
 
 //	
 //	public List<Doctor> getAlldoctors(){
@@ -24,7 +27,9 @@ public class UserService {
 //	}
 	
 	
+	/* User type - Doctor */
 	
+//	Insert doctor
 	public String insertDoctor(String type, String email, String password, String contactNo, String firstName, String lastName, String NIC, String sex, String specialization) {
 		String output = "";
 		try {
@@ -61,13 +66,13 @@ public class UserService {
 			con.close();
 			output = "Inserted successfully";
 		} catch (Exception e) {
-			output = "Error while inserting the item.";
+			output = "Error while inserting the Doctor.";
 			System.err.println(e.getMessage());
 		}
 		return output;
 	}
 	
-	
+//Read doctor list	
 	public String readDoctor() {
 		String output = "";
 		try {
@@ -131,7 +136,7 @@ public class UserService {
 		return output;
 	}
 	
-	
+//	Doctor update
 	public String updateDoctor(String ID, String contactNo) {
 		String output = "";
 		try {
@@ -162,7 +167,7 @@ public class UserService {
 		return output;
 	}
 	
-	
+//Delete existing doctor
 	public String deleteDoctor(String ID) {
 		String output = "";
 		try {
@@ -187,9 +192,46 @@ public class UserService {
 			con.close();
 			output = "Deleted successfully";
 		} catch (Exception e) {
-			output = "Error while deleting the item.";
+			output = "Error while deleting the doctor.";
 			System.err.println(e.getMessage());
 		}
 		return output;
 	}
+	
+	
+
+	
+	
+//	Retrieve  single doctor
+	public static Doctor getDoctorDetails(String id) {
+		Doctor doctor = null;
+		try {
+
+			Connection con = DBConnection.connect();
+
+			String getSql = "SELECT * FROM doctor WHERE id = ? ";
+
+			PreparedStatement ps_getDoctorDetails = con.prepareStatement(getSql);
+			ps_getDoctorDetails.setInt(1, Integer.parseInt(id));
+
+			ResultSet rs = ps_getDoctorDetails.executeQuery();
+
+			while (rs.next()) {
+
+				
+//				doctor = new Doctor(Integer.parseInt(id), rs.getString(5), rs.getString(3), rs.getString(4), rs.getString(2), rs.getString(7), rs.getString(8),rs.getString(6) , rs.getString(9), rs.getString(10));
+				doctor = new Doctor(Integer.parseInt(id), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8) , rs.getString(9), rs.getString(10));
+
+			
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return doctor;
+	}
+
+	
+
 }

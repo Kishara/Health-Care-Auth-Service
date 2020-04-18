@@ -19,12 +19,22 @@ public class Doctor extends User {
 		super();
 	}
 
-	public Doctor(Integer iD, String type, String email, String password, String contactNo, String firstName,
-			String lastName, String nIC, String sex, String specialization) {
+//	public Doctor(Integer iD, String type, String email, String password, String contactNo, String firstName,
+//			String lastName, String nIC, String sex, String specialization) {
+//		super(iD, type, email, password, contactNo);
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		NIC = nIC;
+//		this.sex = sex;
+//		this.specialization = specialization;
+//	}
+	
+	public Doctor(Integer iD, String contactNo, String email, String password, String type, String nIC,
+			String firstName, String lastName, String sex, String specialization) {
 		super(iD, type, email, password, contactNo);
 		this.firstName = firstName;
 		this.lastName = lastName;
-		NIC = nIC;
+		this.NIC = nIC;
 		this.sex = sex;
 		this.specialization = specialization;
 	}
