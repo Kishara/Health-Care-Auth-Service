@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.auth.database.DBConnection;
-import com.auth.model.Doctor;
+
 import com.auth.model.Patient;
 
 public class PatientService {
@@ -61,7 +61,7 @@ public class PatientService {
 	}
 		
 
-	//Read doctor list	
+	//Read patient list	
 		public String readPatient() {
 			String output = "";
 			try {
@@ -72,7 +72,7 @@ public class PatientService {
 				
 				
 				// Prepare the html table to be displayed
-				output = "<table border=\"1\"><tr><th>Patient ID</th><th>Patient type</th><th>Patient Email</th><th>Password</th><th>Contact no"
+				output = "<table border=\"1\"><tr><th>Patient ID</th><th>User type</th><th>Patient Email</th><th>Password</th><th>Contact no"
 						+ "</th><th>First name</th><th>Last name</th><th>DOB</th><th>Age</th><th>sex</th><th>NIC</th><th>Address</th><th>Update</th><th>Remove</th></tr>";
 				
 				String query = "select * from patient";
@@ -123,7 +123,7 @@ public class PatientService {
 				// Complete the html table
 				output += "</table>";
 			} catch (Exception e) {
-				output = "Error while reading the doctor.";
+				output = "Error while reading the patient.";
 				System.err.println(e.getMessage());
 			}
 			return output;
@@ -156,7 +156,7 @@ public class PatientService {
 					con.close();
 					output = "Updated successfully";
 				} catch (Exception e) {
-					output = "Error while updating the item.";
+					output = "Error while updating the patient.";
 					System.err.println(e.getMessage());
 				}
 				return output;
@@ -206,10 +206,10 @@ public class PatientService {
 //
 //						String getSql = "SELECT * FROM patient WHERE id = ? ";
 //
-//						PreparedStatement ps_getDoctorDetails = con.prepareStatement(getSql);
-//						ps_getDoctorDetails.setInt(1, Integer.parseInt(id));
+//						PreparedStatement ps_getDetails = con.prepareStatement(getSql);
+//						ps_getDetails.setInt(1, Integer.parseInt(id));
 //
-//						ResultSet rs = ps_getDoctorDetails.executeQuery();
+//						ResultSet rs = ps_getDetails.executeQuery();
 //
 //						while (rs.next()) {
 //
@@ -235,7 +235,7 @@ public class PatientService {
 				
 				
 				
-//				Retrieve  single doctor
+//				Retrieve  single patient
 				public static Patient getPatientDetails(String id) {
 					Patient patient = null;
 					try {
@@ -243,7 +243,6 @@ public class PatientService {
 						Connection con = DBConnection.connect();
 
 						String getSql = "SELECT * FROM patient WHERE id = ? ";
-
 						PreparedStatement ps_getPatientDetails = con.prepareStatement(getSql);
 						ps_getPatientDetails.setInt(1, Integer.parseInt(id));
 
@@ -252,8 +251,7 @@ public class PatientService {
 						while (rs.next()) {
 
 							
-//							doctor = new Doctor(Integer.parseInt(id), rs.getString(5), rs.getString(3), rs.getString(4), rs.getString(2), rs.getString(7), rs.getString(8),rs.getString(6) , rs.getString(9), rs.getString(10));
-							patient = new Patient(Integer.parseInt(id), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8) , rs.getString(9), rs.getString(10), getSql, getSql);
+							patient = new Patient(Integer.parseInt(id), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8) , rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
 
 						
 						}
