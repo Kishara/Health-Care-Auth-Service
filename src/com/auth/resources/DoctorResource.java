@@ -32,11 +32,15 @@ public class DoctorResource {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertDoctor(@FormParam("type") String type, @FormParam("email") String email,
-			@FormParam("password") String password, @FormParam("contactNo") String contactNo,
-			@FormParam("firstName") String firstName, @FormParam("lastName") String lastName,
-			@FormParam("NIC") String NIC, @FormParam("sex") String sex,
-			@FormParam("specialization") String specialization) {
+	public String insertDoctor(@FormParam("type") String type, 
+							   @FormParam("email") String email,
+							   @FormParam("password") String password,
+							   @FormParam("contactNo") String contactNo,
+							   @FormParam("firstName") String firstName,
+							   @FormParam("lastName") String lastName,
+							   @FormParam("NIC") String NIC,
+							   @FormParam("sex") String sex,
+							   @FormParam("specialization") String specialization) {
 		String output = doctorService.insertDoctor(type, email, password, contactNo, firstName, lastName, NIC, sex,
 				specialization);
 		return output;
